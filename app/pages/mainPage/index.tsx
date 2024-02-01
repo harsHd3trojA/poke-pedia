@@ -40,10 +40,10 @@ const handlePrevPage = () => {
     <>
     <Buttons numb={currentPage} handleNext={handleNextPage} handlePrev={handlePrevPage} />
       <div className="grid sm:grid-cols-2 md:grid-cols-3 p-10 grid-flow-row gap-10">
-        {data.map((item) => {
+        {data.map((item,index) => {
             return (
               <>
-                <PokCard pokemon={item} />
+                <PokCard key={index} pokemon={item} />
               </>
             );
           })}

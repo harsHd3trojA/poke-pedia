@@ -3,10 +3,9 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 interface IPokAttack {
     pokatk : {
-        base_stat: string | number;
-        bstat : number;
+        base_stat: number;
         effort: number;
-        stat: [object];
+        stat: {name:string};
     };
 }
 

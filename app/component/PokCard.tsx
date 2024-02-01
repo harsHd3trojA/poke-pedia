@@ -5,6 +5,7 @@ import PokType from "./PokType";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import PokAttack from "./PokAttack";
+import Image from "next/image";
 
 interface IPokCard {
   pokemon: {
@@ -51,7 +52,7 @@ const PokCard: React.FC<IPokCard> = (props) => {
         {pokDetails ? (
           <div className="flex flex-col justify-center items-center rounded-xl drop-shadow-md p-10 bg-white pointer-events-auto">
             {pokDetails && (
-              <img src={pokDetails.sprites.front_default} alt="pokemon" />
+              <Image src={pokDetails.sprites.front_default} alt="pokemon" width={100} height={100}/>
             )}
             <h1 className="pb-3">{pokDetails.name}</h1>
             <div className="">
@@ -94,10 +95,10 @@ const PokCard: React.FC<IPokCard> = (props) => {
             {pokDetails && (
               <Carousel autoFocus={false} showThumbs={false} width={"full"} dynamicHeight>
                 <div>
-                  <img src={pokImg.front_default} />
+                  <Image src={pokImg.front_default} width={100} height={100} alt={""}/>
                 </div>
                 <div>
-                  <img src={pokImg.front_shiny} />
+                  <Image src={pokImg.front_shiny} width={100} height={100} alt={""} />
                 </div>
               </Carousel>
             )}
@@ -128,19 +129,17 @@ const PokCard: React.FC<IPokCard> = (props) => {
               <h1 className="flex justify-center items-center md:text-2xl">
                 Performance
               </h1>
-              {pokStat.map((st: { bstat: number; effort: number; stat: [object]; }) => {
-                console.log("st--", st);
-                return <PokAttack pokatk={st} />;
+              {pokStat.map((st: { base_stat: number; effort: number; stat: {name:string}; },index: React.Key | null | undefined) => {
+                return <PokAttack key={index} pokatk={st} />;
               })}
             </div>
 
             <div className="flex justify-center items-center pt-10 pb-4">
               <h1 className="max-md:text-sm">Type :&nbsp;</h1>
 
-              {pkType.map((tp: { st: number; tp: [object]; }) => {
-                console.log("in--", tp);
+              {pkType.map((tp: { slot: number; type: {name:string}; },index: React.Key | null | undefined) => {
 
-                return <PokType poktp={tp} />;
+                return <PokType key={index} poktp={tp} />;
               })}
             </div>
           </div>

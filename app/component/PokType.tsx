@@ -3,9 +3,7 @@ import React from "react";
 interface IPokType {
   poktp: {
     slot: number;
-    type: any;
-    st: number;
-    tp: [object];
+    type: {name:string};
   };
 }
 
